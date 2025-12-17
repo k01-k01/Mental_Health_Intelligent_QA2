@@ -113,3 +113,6 @@ python src/distilled_test.py
 - 确保各目录具有适当的读写权限
 - 训练过程可能需要较长时间，请耐心等待
 - 当前实现强制使用CPU进行训练和推理
+
+  效果展示：
+  <img width="1788" height="994" alt="image" src="https://github.com/user-attachments/assets/327f2e42-c874-4035-937f-5d1e86aec398" />
