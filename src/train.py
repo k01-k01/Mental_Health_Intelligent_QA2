@@ -1,7 +1,6 @@
 # train.py
 # 微调训练脚本
 
-# -*- coding: utf-8 -*-
 import os.path
 import torch
 from torch.utils.data import DataLoader
@@ -10,7 +9,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from qa_dataset import QADataset
 from tqdm import tqdm
 import time, sys
-import json # 导入 json 模块用于读取数据集文件
+import json 
 
 def train_model(model, train_loader, val_loader, optimizer,
                 device, num_epochs, model_output_dir, scheduler, writer, gradient_accumulation_steps):
@@ -97,9 +96,7 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True)
     
-    # ----------------------------------------------------
-    # 核心修改：加载数据并进行切片以加速训练
-    # ----------------------------------------------------
+
     print("Start Load Train Data...")
     try:
         # 读取JSONL格式文件
@@ -153,9 +150,7 @@ def main():
     # 使用切片后的数据子集初始化 QADataset
     val_set = QADataset(val_data_subset, tokenizer, max_length)
     val_loader = DataLoader(val_set, **val_params)
-    # ----------------------------------------------------
-    # 核心修改结束
-    # ----------------------------------------------------
+
 
     # 日志记录
     writer = SummaryWriter(logs_dir)
