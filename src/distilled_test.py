@@ -6,7 +6,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import TextIteratorStreamer
 from threading import Thread
 import torch
-import time   # ← 唯一新增的 import
+import time   
  
 model_name = "./output/best"
 token_name = "D:/project/qwen2.5-0.5B-Instruct"
@@ -51,7 +51,7 @@ def chat_response(message, history):
             time.sleep(0.002)             # 稍长 sleep，防止浏览器节流
  
     # 最后强制再吐一次，防止最后几百字被吞
-    yield generated_text                   # ← 关键！必须加这一行
+    yield generated_text                  
  
     thread.join()
     print("\n【回答完毕】\n")
